@@ -1,14 +1,14 @@
-OBJECTS = createfile
-LIBS =
-PROGRAMS = create-file hexdump timestamp lseek-huge
+CC = gcc
+CC_FLAGS =
+SRC = $(wildcard *.c)
+PROGS = $(basename $(SRC))
 
 .PHONY: all clean
 
-all: $(OBJECTS) $(LIBS) $(PROGRAMS)
+all: $(PROGS)
+
+%: %.c
+	$(CC) -o $@ $(CC_FLAGS) $<
 
 clean:
-	rm -f *.o *.a $(PROGRAMS)
-
-create-file:
-	gcc -o create-file create-file.c
-
+	rm -f *.o *.a $(PROGS)
